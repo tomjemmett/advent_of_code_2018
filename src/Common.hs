@@ -172,3 +172,7 @@ countReduce = foldr (flip (M.insertWith (+)) 1) M.empty
 
 (<&>) :: (a -> Bool) -> (a -> Bool) -> (a -> Bool)
 (<&>) = liftA2 (&&)
+
+
+bounds :: [Point2d] -> [[Int]]
+bounds i = map <$> [minimum, maximum] <*> pure (map <$> [fst, snd] <*> pure i)

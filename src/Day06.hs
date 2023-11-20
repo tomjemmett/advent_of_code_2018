@@ -64,6 +64,3 @@ part2 i = flood i
         d = sum $ map (manhattanDistance p) i
       guard $ d < 10000
       pure ()
-
-bounds :: [Point2d] -> [[Int]]
-bounds i = map <$> [minimum, maximum] <*> pure (map <$> [fst, snd] <*> pure i)

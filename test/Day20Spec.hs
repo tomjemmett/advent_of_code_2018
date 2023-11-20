@@ -15,5 +15,5 @@ spec = describe "Day 20" $ do
       ReadMode
       ( \h -> do
           actualInput <- hGetContents h
-          day10 actualInput `shouldBe` []
+          day20 actualInput `shouldBe` []
       )
