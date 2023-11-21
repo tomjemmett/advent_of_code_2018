@@ -1,4 +1,4 @@
-module Day10 where -- (day10) where
+module Day10 (day10) where
 
 import Common
 import Data.HashSet qualified as S
