@@ -8,6 +8,7 @@ import Data.Foldable (toList)
 import Data.List (sort, sortBy)
 import Data.List.Split (splitOn)
 import Data.Map qualified as M
+import Data.HashMap.Strict qualified as HM
 import Data.Maybe (fromMaybe)
 import Data.Vector ((!), (!?))
 import Data.Vector qualified as V
@@ -176,3 +177,11 @@ countReduce = foldr (flip (M.insertWith (+)) 1) M.empty
 
 bounds :: [Point2d] -> [[Int]]
 bounds i = map <$> [minimum, maximum] <*> pure (map <$> [fst, snd] <*> pure i)
+
+
+point2dGridToString :: Char -> [[Int]] -> HM.HashMap Point2d Char -> String
+point2dGridToString d [[minx, miny], [maxx, maxy]] g = unlines [
+  [HM.lookupDefault d (x, y) g | x <- [minx..maxx]] | y <- [miny..maxy]]
+
+point2dGridToString' :: Char -> HM.HashMap Point2d Char -> String
+point2dGridToString' d g = point2dGridToString d (bounds $ HM.keys g) g
